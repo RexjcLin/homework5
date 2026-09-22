@@ -29,4 +29,6 @@ urlpatterns = [
     #WEB API
     path('show_temperature_API/', views.show_temperature_API, name='show_temperature_API'),
     path('add_temperature_API/', views.add_temperature_API,name='add_temperature_API'),
+
+    #########
 ]
