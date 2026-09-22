@@ -1,52 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <title>即時溫溼度顯示</title>
     <meta http-equiv="refresh" content="60">
     <style>
-        .fnav{
-            text-align: center;
+        body {
+            background: #f2f2f2;
+            color: #111;
         }
 
+        .page-header {
+            background: #111;
+            color: #fff;
+        }
+
+        .reading-card {
+            border: 1px solid #d0d0d0;
+            border-radius: 0;
+        }
+
+        .reading-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .btn-dark,
+        .btn-outline-dark {
+            border-radius: 0;
+        }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="row justify-content-center mt-4">
-            <h3>目前溫濕度</h3>
-        </div>
-        <div class="row justify-content-center mt-4">
-            <div class="col-md-2" id="temperature_title">
-                <label for="temperature_title">目前溫度</label>
-            </div>
-            <div class="col-md-2">
-                <input type="text" value="{{ data.temperature }}" disabled>
-            </div>
-        </div>
-        <div class="row justify-content-center mt-4">
-            <div class="col-md-2" id="humidity_title">
-                <label for="humidity_title">目前濕度</label>
-            </div>
-            <div class="col-md-2">
-                <input type="text" value="{{ data.humidity }}" disabled>
-            </div>
-        </div>
 
-        <nav id="footer" >
-            <div class="container mt-4">
-                <div class="fnav">
-                    <p>Copyring @2024 <a href="">tony yeh</a> ALL rights reserved.</p>
+<body>
+    <header class="page-header py-4 mb-5">
+        <div class="container">
+            <h1 class="h2 mb-1">即時溫濕度</h1>
+            <p class="mb-0 text-light">最新感測器資料</p>
+        </div>
+    </header>
+    <main class="container pb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card reading-card shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between border-bottom pb-3 mb-3"><span>目前讀值</span><span
+                                class="badge badge-dark">LIVE</span></div>
+                        <div class="row">
+                            <div class="col-6"><small class="text-muted d-block">目前溫度</small><span
+                                    class="reading-value">{{ data.temperature }}</span><span class="ml-1">°C</span>
+                            </div>
+                            <div class="col-6 border-left"><small class="text-muted d-block">目前濕度</small><span
+                                    class="reading-value">{{ data.humidity }}</span><span class="ml-1">%</span></div>
+                        </div>
+                    </div>
                 </div>
+                <div class="d-flex justify-content-between mt-4"><a class="btn btn-dark"
+                        href="{% url 'show_temperature2' %}">即時更新版</a><a class="btn btn-outline-dark"
+                        href="{% url 'view_history_temperature' %}">歷史資料</a></div>
             </div>
-        </nav>
+        </div>
+    </main>
     </div>
 </body>
+
 </html>
 
 
