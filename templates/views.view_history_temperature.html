@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>溫溼度</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
+        .head{
+            align-items: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>歷史溫溼度</h1>
+    <div class="head">
+        <h3><a href="{% url 'add_temperature' %}">新增溫溼度顯示</a></h3>
+        <h3><a href="{% url 'show_temperature' %}">即時溫溼度顯示</a></h3>
+        <h3><a href="{% url 'show_temperature2' %}">即時溫溼度顯示2</a></h3>
+    </div>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>sensor_id</th>
+            <th>溫度</th>
+            <th>濕度</th>
+            <th>時間</th>
+        </tr>
+        {% for record in history %}
+        <tr>
+            <td>{{ record.myid }}</td>
+            <td>{{ record.sensor_id }}</td>
+            <td>{{ record.temperature }}</td>
+            <td>{{ record.humidity }}</td>
+            <td>{{ record.timestamp }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+   
+</body>
+</html>
